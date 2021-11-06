@@ -278,17 +278,24 @@ def add_payment_transaction(out, asrc, message, is_group):
                     {"Z_PK": payment_transaction_pk, "Z_ENT": 15, "Z_OPT": 2, "ZAMOUNT_1000": payment["amount_1000"], "ZSTATUS": payment["status"], "ZTYPE": payment["type"], "ZTIMESTAMP": atoi_timestamp(payment["timestamp"]), "ZBANKTRANSACTIONID": payment["bank_transaction_id"], "ZCREDENTIALID": payment["credential_id"], "ZCURRENCY": payment["currency"], "ZERRORCODE": payment["error_code"], "ZGROUPJID": group_jid, "ZMESSAGESTANZAID": payment["key_id"], "ZRECEIVERJID": payment["receiver"], "ZSENDERJID": payment["sender"], "ZTRANSACTIONID": payment["id"], "ZMETADATA": payment["metadata"].encode()})
 
 # Execution begins here.
+OUTPUT_FILE = "out.db"
 parser = argparse.ArgumentParser(description="Script to convert android db into iOS db.")
 parser.add_argument("-adb","--android_db",help="Android DB file.",type=str)
 parser.add_argument("-idb","--ios_db",help="iOS DB file.",type=str)
 parser.add_argument("-u","--user_id",help="User Id. Eg: 9185XXXXXXXX",type=str)
 
-args = parser.parse_args()
+if os.path.exists(OUTPUT_FILE):
+    print("Output file already exists. {}".format(OUTPUT_FILE))
+    if input("Do you wish to overwrite it? [y/n]:").upper()=="Y":
+        os.remove(OUTPUT_FILE)
+    else:
+        exit(1)
 
+args = parser.parse_args()
 asrc = sqlite3.connect(args.android_db)
 asrc.text_factory = text_factory
 isrc = sqlite3.connect(args.ios_db)
-out = sqlite3.connect("out.db")
+out = sqlite3.connect(OUTPUT_FILE)
 userid = args.user_id
 
 user_jid = userid+"@s.whatsapp.net"
