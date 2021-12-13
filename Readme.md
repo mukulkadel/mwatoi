@@ -22,6 +22,6 @@ This project is tested only in windows environment.
 
 # References
 
-1. https://github.com/residentsummer/watoi.git
+1. https://github.com/residentsummer/watoi
 2. https://github.com/EliteAndroidApps/WhatsApp-Key-DB-Extractor
 3. https://github.com/andreas-mausch/whatsapp-viewer
