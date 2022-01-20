@@ -371,6 +371,10 @@ chat_sessions = out.execute(
     "SELECT * FROM ZWACHATSESSION")
 chat_sessions_cols = get_col_names(chat_sessions)
 
+# Creating legacy_available_messages_view if doesn't exist.
+with open('query\\create_legacy_available_messages_view.sql','r') as create_query:
+    asrc.execute(create_query.read())
+
 for chat_session in chat_sessions:
     chat_session = row_to_dict(chat_session, chat_sessions_cols)
     messages_count = list(asrc.execute(
