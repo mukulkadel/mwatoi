@@ -273,6 +273,8 @@ def add_payment_transaction(out, asrc, message, is_group):
     if (len(payment)) == 1:
         payment = row_to_dict(payment[0], payment_cols)
         payment_transaction_pk = get_last_pk(out, 'ZWAZ1PAYMENTTRANSACTION')+1
+        if payment['metadata'] == None:
+            payment['metadata'] = ''
         out.execute("INSERT INTO ZWAZ1PAYMENTTRANSACTION (Z_PK, Z_ENT, Z_OPT, ZAMOUNT_1000, ZSTATUS, ZTYPE, ZTIMESTAMP, ZBANKTRANSACTIONID, ZCREDENTIALID, ZCURRENCY, ZERRORCODE, ZGROUPJID, ZMESSAGESTANZAID, ZRECEIVERJID, ZSENDERJID, ZTRANSACTIONID, ZMETADATA) VALUES (:Z_PK, :Z_ENT, :Z_OPT, :ZAMOUNT_1000, :ZSTATUS, :ZTYPE, :ZTIMESTAMP, :ZBANKTRANSACTIONID, :ZCREDENTIALID, :ZCURRENCY, :ZERRORCODE, :ZGROUPJID, :ZMESSAGESTANZAID, :ZRECEIVERJID, :ZSENDERJID, :ZTRANSACTIONID, :ZMETADATA);",
                     {"Z_PK": payment_transaction_pk, "Z_ENT": 15, "Z_OPT": 2, "ZAMOUNT_1000": payment["amount_1000"], "ZSTATUS": payment["status"], "ZTYPE": payment["type"], "ZTIMESTAMP": atoi_timestamp(payment["timestamp"]), "ZBANKTRANSACTIONID": payment["bank_transaction_id"], "ZCREDENTIALID": payment["credential_id"], "ZCURRENCY": payment["currency"], "ZERRORCODE": payment["error_code"], "ZGROUPJID": group_jid, "ZMESSAGESTANZAID": payment["key_id"], "ZRECEIVERJID": payment["receiver"], "ZSENDERJID": payment["sender"], "ZTRANSACTIONID": payment["id"], "ZMETADATA": payment["metadata"].encode()})
 
