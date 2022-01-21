@@ -113,7 +113,7 @@ if not os.path.exists(manifest_db_path):
 print('Looking for whatsapp data in iphone backup.')
 manifest_db = sqlite3.connect(manifest_db_path)
 
-chatstorage = list(manifest_db.execute("SELECT fileID FROM Files WHERE relativePath LIKE 'ChatStorage.sqlite'"))
+chatstorage = list(manifest_db.execute("SELECT fileID FROM Files WHERE relativePath='ChatStorage.sqlite' AND domain='AppDomainGroup-group.net.whatsapp.WhatsApp.shared'"))
 if len(chatstorage)!=1:
     print('Error finding whatsapp data. Terminating!')
     exit(5)
