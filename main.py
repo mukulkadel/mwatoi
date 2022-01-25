@@ -113,14 +113,14 @@ if not os.path.exists(manifest_db_path):
 print('Looking for whatsapp data in iphone backup.')
 manifest_db = sqlite3.connect(manifest_db_path)
 
-chatstorge = list(manifest_db.execute("SELECT fileID FROM Files WHERE relativePath='ChatStorage.sqlite' AND domain='AppDomainGroup-group.net.whatsapp.WhatsApp.shared'"))
-if len(chatstorge)!=1:
+chatstorage = list(manifest_db.execute("SELECT fileID FROM Files WHERE relativePath='ChatStorage.sqlite' AND domain='AppDomainGroup-group.net.whatsapp.WhatsApp.shared'"))
+if len(chatstorage)!=1:
     print('Error finding whatsapp data. Terminating!')
     exit(5)
 
-chatstorge_path = os.path.join(iphone_backup_loc,chatstorge[0][0][:2],chatstorge[0][0])
+chatstorage_path = os.path.join(iphone_backup_loc,chatstorage[0][0][:2],chatstorage[0][0])
 
-shutil.copyfile(chatstorge_path,'out\\ios.db')
+shutil.copyfile(chatstorage_path,'out\\ios.db')
 print('Backup copied.\n')
 uid = input("Enter phone number with country code, eg: 9185XXXXXXXX: ")
 print('Starting migration script.')
@@ -128,7 +128,7 @@ os.system('python migrate.py -adb out\\android.db -idb out\\ios.db -u {}'.format
 
 print('Migration complete!')
 print('Updating iphone backup')
-shutil.copyfile('out\\out.db',chatstorge_path)
+shutil.copyfile('out\\out.db',chatstorage_path)
 print('Deleting out directory.')
 shutil.rmtree('out')
 print('\n\t4. Restore local backup and start the whatsapp.')
