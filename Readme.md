@@ -25,3 +25,8 @@ This project is tested only in windows environment.
 1. https://github.com/residentsummer/watoi
 2. https://github.com/EliteAndroidApps/WhatsApp-Key-DB-Extractor
 3. https://github.com/andreas-mausch/whatsapp-viewer
+
+
+# Notes
+- My python version: 3.9.12
+- Please make sure to take complete google drive backup before connecting your android device.

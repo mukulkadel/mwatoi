@@ -1,5 +1,1 @@
-os
-tarfile
-shutil
-sqlite3
 argparse

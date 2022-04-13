@@ -4,7 +4,10 @@ import shutil
 import sqlite3
 
 req_file_list = {'bin': ['adb.exe', 'AdbWinApi.dll','AdbWinUsbApi.dll','LegacyWhatsApp.apk'],'.':['migrate.py']}
-iphone_backup_root_loc = os.getenv('APPDATA')+'\\Apple Computer\\MobileSync\\Backup'
+iphone_backup_root_locs = [
+    os.getenv('APPDATA')+'\\Apple Computer\\MobileSync\\Backup',
+    os.getenv('USERPROFILE')+'\\Apple\\MobileSync'
+]
 
 print('\nWhatsApp android to ios transferrer\n')
 
@@ -91,7 +94,14 @@ print('\n\t3. Create an unencrypted local backup using iTunes.')
 input('Press enter to conitnue...')
 print('Looking for iphone backup.')
 
-if not os.path.exists(iphone_backup_root_loc):
+root_loc_exists = False
+for tmp_root_loc in iphone_backup_root_locs:
+    if os.path.exists(tmp_root_loc):
+        root_loc_exists = True
+        iphone_backup_root_loc = tmp_root_loc
+        break
+
+if not root_loc_exists:
     print('Backup directory is missing.')
     exit(2)
 
