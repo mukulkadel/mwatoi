@@ -47,11 +47,16 @@ download and install the Whatsapp apk. Alternatively, the apk is located under m
 
 6. Once Whatsapp is installed, run it, log-in, and restore Whatsapp from the Google Drive backup.
 
-7. On the computer, start a new terminal and 'cd' to the mwatoi folder, and get the data from Whatsapp as follows
+7. On the computer, start a new terminal and 'cd' to the mwatoi folder, and get the data from Whatsapp as follows 
+(On windows, of course use `bin\adb.exe`)
 `> bin/adb pull -a /storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Databases/msgstore.db.crypt14`
+
 `> bin/adb root`
+
 `> bin/adb pull -a /data/data/com.whatsapp`
+
 `> bin/adb unroot`
+
 
 8. Copy the msgstore.db file you can find in mwatoi/com.whatsapp/databases on your computer into mwatoi/out and rename it android.db
 
