@@ -1,4 +1,7 @@
+
 __pycache__
 out
 tmp
 in
+.DS_Store
+.DS_Store?
