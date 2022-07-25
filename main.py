@@ -6,6 +6,7 @@ import sqlite3
 req_file_list = {'bin': ['adb.exe', 'AdbWinApi.dll','AdbWinUsbApi.dll','LegacyWhatsApp.apk'],'.':['migrate.py']}
 iphone_backup_root_locs = [
     os.getenv('APPDATA')+'\\Apple Computer\\MobileSync\\Backup',
+    os.getenv('USERPROFILE')+'\\Apple\\MobileSync\\Backup'
     os.getenv('USERPROFILE')+'\\Apple\\MobileSync'
 ]
 
