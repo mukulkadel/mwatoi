@@ -26,7 +26,7 @@ This project is tested only in windows environment.
 
 
 
-# How, after many hours of struggles, i finally managed to port whatsapp messages from android to iphone
+# How, after many hours of struggle, I finally managed to port whatsapp messages from android to iPhone
 This workaround consists in using an Android emulator, as it is easy to root it without messing up stuff on a real phone.
 
 0-8 can either be executed on mac or windows, but for 9 you will need a windows computer
